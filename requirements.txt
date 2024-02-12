@@ -1,0 +1,5 @@
+# contains required python packages and dependencies
+Flask
+pytest
+requests
+pymongo

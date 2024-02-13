@@ -1,29 +1,21 @@
-version: 2.1 # allows you access to latest features
-workflows:
-  test-deploy:
-    jobs:
-      - test
+version: 2.1
 jobs:
-  build_and_test:
+  run_tests:
     docker:
-      - image: circleci/python:3.9.18
+      - image: circleci/python:3.8
     steps:
       - checkout
-      - run: python --version
-#       - run:
-#         name: Install Python dependencies
-#         command: |
-#         conda activate notes-app-env
-#         pip install -r requirements.txt
-#       - run:
-#           name: Run unit test
-#           command: |
-#           pytest tests/test_endpoints.py
-#       - store_test_results:
-#           path: test-reports
-#       - store_artifacts:
-#           path: test-reports
-# workflows:
-#   build_test:
-#     jobs:
-#       - run_tests
+      - run:
+          name: Install Python dependencies
+          command: pip3 install -r requirements.txt
+      - run:
+          name: Run Pytest
+          command: pytest
+      - store_test_results:
+          path: test-reports
+      - store_artifacts:
+          path: test-reports
+workflows:
+  build_test:
+    jobs:
+      - run_tests

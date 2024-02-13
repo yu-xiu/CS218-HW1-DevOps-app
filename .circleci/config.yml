@@ -10,7 +10,6 @@ jobs:
     steps:
       - checkout
       - run:
-        #check
         python --version
 #       - run:
 #         name: Install Python dependencies

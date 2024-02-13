@@ -4,8 +4,10 @@ import datetime
 from pprint import pprint
 import os
 
+os.environ['FLASK_ENV'] = 'production'
+
 app = Flask(__name__)
-client = MongoClient('mongodb://localhost:27017/')
+client = MongoClient('mongodb://mongo-example:27017')
 db = client['users_db']
 collection = db['users']
 
@@ -90,8 +92,6 @@ def delete_user_by_name():
     else:
         return jsonify({'sorry': 'failed to delete the given user'})
 
-
-os.environ['FLASK_ENV'] = 'production'
 
 if __name__ == '__main__':
     # 0.0.0.0 it will bind to all available network interfaces within the docker container

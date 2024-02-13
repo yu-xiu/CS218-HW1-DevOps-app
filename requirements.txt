@@ -1,5 +1,5 @@
 # contains required python packages and dependencies
-Flask
-pytest
+Flask == 3.0.2
+pytest == 8.0.0
 requests
 pymongo

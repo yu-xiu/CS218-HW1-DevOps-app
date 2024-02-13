@@ -9,8 +9,7 @@ jobs:
       - image: circleci/python:3.9.18
     steps:
       - checkout
-      - run:
-        python --version
+      - run: python --version
 #       - run:
 #         name: Install Python dependencies
 #         command: |

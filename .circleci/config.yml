@@ -10,6 +10,7 @@ jobs:
     steps:
       - checkout
       - run:
+        node --version
         python --version
 #       - run:
 #         name: Install Python dependencies

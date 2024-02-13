@@ -9,27 +9,18 @@ new_user_data = {
 }
 
 existing_user_data = {
-    'name': 'Jason Lee Wang',
+    'name': 'Jason Lee',
     'email': 'Jason.Lee.Wang@sample.com'
 }
 
 expected_all_users = {
-    "Sue Jade",
     "Jason Lee",
-    "Chris Wu",
-    "James Fang",
-    "Ashley Yu",
-    "wu wu",
-    "llisa",
-    "Jason Lee Wang",
-    "Well Smith",
-    "Micheal Huang",
-    "Liz K",
-    "Liz W"
+    "Sue Jade",
+    "Liz K"
 }
 user_name_to_delete = 'Liz K'
 user_name_to_delete_none_existing = 'unknown'
-user_name_to_get_email = 'Jason Lee Wang'
+user_name_to_get_email = 'Jason Lee'
 expected_email = 'Jason.Lee.Wang@sample.com'
 
 

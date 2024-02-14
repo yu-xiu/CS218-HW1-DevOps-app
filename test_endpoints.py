@@ -27,10 +27,10 @@ def test_hi():
     assert '3' == '3'
 
 
-'''def test_time():
-    response = requests.get(f'{BASE_URL}/time')
+def test_time(client):
+    response = client.get(f'/time')
     assert response.status_code == 200
-    curr_time = response.json()['Current time']
+    '''curr_time = response.json()['Current time']
     expected_time = {
         'Current time': curr_time
     }

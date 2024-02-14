@@ -37,13 +37,10 @@ def test_create_user(client):
     assert response.status_code == 200
 
 
-# def test_create_existing_user():
-#     response = requests.post(
-#         f'{BASE_URL}/users/create', json=existing_user_data)
-#     assert response.status_code == 200
-#     expected_data = {
-#         'warning': 'The given name is in use, please add another user'}
-#     assert response.json() == expected_data
+def test_create_existing_user(client):
+    response = client.post(
+        f'{BASE_URL}/users/create', json=existing_user_data)
+    assert response.status_code == 200
 
 
 # def test_list_all_users():

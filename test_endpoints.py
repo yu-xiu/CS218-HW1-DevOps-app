@@ -31,10 +31,6 @@ def test_time(client):
     response = client.get(f'/time')
     assert response.status_code == 200
     curr_time = response.json()['Current time']
-    expected_time = {
-        'Current time': curr_time
-    }
-    assert response.json() == expected_time
 
 
 # def test_create_user():

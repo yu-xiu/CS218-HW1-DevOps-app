@@ -33,13 +33,13 @@ def test_time(client):
 
 
 def test_create_user(client):
-    response = client.post(f'{BASE_URL}/users/create', json=new_user_data)
+    response = client.post(f'/users/create', json=new_user_data)
     assert response.status_code == 200
 
 
 def test_create_existing_user(client):
     response = client.post(
-        f'{BASE_URL}/users/create', json=existing_user_data)
+        f'/users/create', json=existing_user_data)
     assert response.status_code == 200
 
 

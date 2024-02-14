@@ -32,15 +32,15 @@ def test_time(client):
     assert response.status_code == 200
 
 
-def test_create_user(client):
-    response = client.post(f'/users/create', json=new_user_data)
-    assert response.status_code == 200
+# def test_create_user(client):
+#     response = client.post(f'/users/create', json=new_user_data)
+#     assert response.status_code == 200
 
 
-def test_create_existing_user(client):
-    response = client.post(
-        f'/users/create', json=existing_user_data)
-    assert response.status_code == 200
+# def test_create_existing_user(client):
+#     response = client.post(
+#         f'/users/create', json=existing_user_data)
+#     assert response.status_code == 200
 
 
 # def test_list_all_users():

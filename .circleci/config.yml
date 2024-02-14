@@ -10,7 +10,7 @@ jobs:
           command: pip install -r requirements.txt
       - run:
           name: Run Pytest
-          command: pytest test_endpoints.py
+          command: pytest 
       - store_test_results:
           path: test-reports
       - store_artifacts:

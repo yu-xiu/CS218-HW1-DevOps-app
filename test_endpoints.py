@@ -30,7 +30,6 @@ def test_hi():
 def test_time(client):
     response = client.get(f'/time')
     assert response.status_code == 200
-    curr_time = response.json()['Current time']
 
 
 # def test_create_user():

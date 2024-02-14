@@ -15,7 +15,6 @@ existing_user_data = {
 
 expected_all_users = {
     "Jason Lee",
-    "Sue Jade",
     "Liz K"
 }
 user_name_to_delete = 'Liz K'

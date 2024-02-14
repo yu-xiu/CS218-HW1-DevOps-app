@@ -32,13 +32,9 @@ def test_time(client):
     assert response.status_code == 200
 
 
-# def test_create_user():
-#     response = requests.post(f'{BASE_URL}/users/create', json=new_user_data)
-#     # using assert to check if it passed the test, and whether the acutal result mathchs the expected results
-#     assert response.status_code == 200
-#     expected_data = {
-#         'Congrats!': 'User created successfully'}
-#     assert response.json() == expected_data
+def test_create_user(client):
+    response = client.post(f'{BASE_URL}/users/create', json=new_user_data)
+    assert response.status_code == 200
 
 
 # def test_create_existing_user():

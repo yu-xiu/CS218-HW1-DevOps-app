@@ -10,6 +10,11 @@ jobs:
           name: Install Python dependencies
           command: pip install -r requirements.txt
 
+      # check docker veresion
+      - run:
+          name: Check Docker version
+          command: docker --version
+
       # set up a mongodb container
       - run:
           name: Set up MongoDB container

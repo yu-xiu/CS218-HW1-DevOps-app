@@ -16,14 +16,14 @@ jobs:
           command: docker ps -a --filter "name=mongo_example" --format "{{.Names}}" || true
           id: check_container
 
-      # when mongodb container is not exist, create one
-      - run:
-          name: Set up MongoDB
-          command: |
-            if [ -z "${CIRCLECI}" ] && [[ ! "$(echo $CIRCLECI)" =~ "mongo_example" ]]; then
-              docker run -p 27017:27017 --name mongo_example -d mongo
-            fi
-          when: "'mongo_example' not in steps.check_container.stdout"
+      # # when mongodb container is not exist, create one
+      # - run:
+      #     name: Set up MongoDB
+      #     command: |
+      #       if [ -z "${CIRCLECI}" ] && [[ ! "$(echo $CIRCLECI)" =~ "mongo_example" ]]; then
+      #         docker run -p 27017:27017 --name mongo_example -d mongo
+      #       fi
+      #     when: "'mongo_example' not in steps.check_container.stdout"
 
       # run flask test
       - run:

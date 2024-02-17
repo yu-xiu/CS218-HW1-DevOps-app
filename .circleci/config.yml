@@ -23,6 +23,11 @@ jobs:
           name: Check Docker version
           command: docker --version
 
+      # Check if Docker is running
+      - run:
+          name: Check Docker status
+          command: docker info || echo "Docker is not running"
+
       # Set up Docker Network
       - run:
           name: Set up Docker Network

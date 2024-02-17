@@ -38,7 +38,7 @@ def create_user():
         return jsonify({'Error': 'Name is not provided'})
     if not email:
         s = "Email is not provided"
-        pprint()
+        pprint(s)
         return
 
     # check if the user exists

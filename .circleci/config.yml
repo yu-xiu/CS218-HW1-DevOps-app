@@ -5,12 +5,30 @@ jobs:
       - image: circleci/python:3.9
     steps:
       - checkout
+      # install dependencies
       - run:
           name: Install Python dependencies
           command: pip install -r requirements.txt
+
+      # Check if the MongoDB container already exists
+      - run:
+          name: Check MongoDB container
+          command: docker ps -a --filter "name=mongo_example" --format "{{.Names}}" || true
+          id: check_container
+
+      # when mongodb container is not exist, create one
+      - run:
+          name: Set up MongoDB
+          command: |
+            if [ -z "${CIRCLECI}" ]; then
+              docker run -p 27017:27017 --name mongo_example -d mongo
+            fi
+          when: "'mongo_example' not in steps.check_container.stdout"
+
+      # run flask test
       - run:
           name: Run Pytest
-          command: pytest 
+          command: pytest
       - store_test_results:
           path: test-reports
       - store_artifacts:

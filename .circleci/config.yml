@@ -18,20 +18,20 @@ jobs:
           name: Install Python dependencies
           command: pip install -r requirements.txt
 
-      # check docker veresion, make sure that docker is running
-      - run:
-          name: Check Docker version
-          command: docker --version
+      # # check docker veresion, make sure that docker is running
+      # - run:
+      #     name: Check Docker version
+      #     command: docker --version
 
-      # Check if Docker is running
-      - run:
-          name: Check Docker status
-          command: docker info || echo "Docker is not running"
+      # # Check if Docker is running
+      # - run:
+      #     name: Check Docker status
+      #     command: docker info || echo "Docker is not running"
 
-      # Set up Docker Network
-      - run:
-          name: Set up Docker Network
-          command: docker network create my-network
+      # # Set up Docker Network
+      # - run:
+      #     name: Set up Docker Network
+      #     command: docker network create my-network
 
       # # set up a mongodb container
       # - run:

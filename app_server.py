@@ -6,10 +6,15 @@ import os
 
 os.environ['FLASK_ENV'] = 'production'
 
+
 app = Flask(__name__)
-client = MongoClient('mongodb://mongo-example:27017')
-db = client['users_db']
-collection = db['users']
+
+
+def config_app():
+    client = MongoClient('mongodb://mongo-example:27017')
+    app.mongo_client = client
+    app.db = client['users_db']
+    app.collection = app.db['users']
 
 
 @app.route('/', methods=['GET'])
@@ -42,20 +47,20 @@ def create_user():
         return
 
     # check if the user exists
-    eixisting_user = collection.find_one({'name': name})
+    eixisting_user = app.collection.find_one({'name': name})
     if eixisting_user:
         return jsonify({'warning': 'The given name is in use, please add another user'})
 
     # insert newly created user into mongodb
     new_user = {'name': name, 'email': email}
-    collection.insert_one(new_user)
+    app.collection.insert_one(new_user)
     return jsonify({'Congrats!': 'User created successfully'})
 
 
 @app.route('/users', methods=['GET'])
 # list all users names
 def get_users():
-    users = [user['name'] for user in collection.find(
+    users = [user['name'] for user in app.collection.find(
         {}, {'_id': 0, 'name': 1})]  # excludes id but with name
     return jsonify({'users': users})
 
@@ -66,7 +71,7 @@ def get_user_email():
     user_name = request.args.get('name')
     if not user_name:
         return jsonify({'error': 'please provide a valid user name'})
-    user = collection.find_one({'name': user_name}, {'_id': 0, 'email': 1})
+    user = app.collection.find_one({'name': user_name}, {'_id': 0, 'email': 1})
     # if user is not exist
     if user is None:
         return jsonify({'error': 'there is not such user'})
@@ -82,11 +87,11 @@ def delete_user_by_name():
         return jsonify({'error': 'must provide a user name'})
 
     # check if user exits
-    user = collection.find_one({'name': user_name})
+    user = app.collection.find_one({'name': user_name})
     if user is None:
         return jsonify({'error': 'no such user'})
     # delete
-    deleted = collection.delete_one({'name': user_name})
+    deleted = app.collection.delete_one({'name': user_name})
     if deleted.deleted_count == 1:
         return jsonify({'Great!': 'successfully deleted the given user'})
     else:
@@ -94,6 +99,7 @@ def delete_user_by_name():
 
 
 if __name__ == '__main__':
+    config_app()
     # 0.0.0.0 it will bind to all available network interfaces within the docker container
     app.run(host='0.0.0.0', debug=True, port=3000)
     # app.run(host='localhost', debug=True, port=8080)

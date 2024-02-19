@@ -1,17 +1,17 @@
 import pytest
-from app_server import app as flask_app
+from app_server import app
+from mongomock import MongoClient
 
 
 @pytest.fixture
-def app():
-   
-    flask_app.config.update({
-        "TESTING": True,
-    })
+def client():
+    app.config['TESTING'] = True
+    client = app.test_client()
 
-    yield flask_app  
+    # Use mongomock for testing
+    mongo_client = MongoClient()
+    app.mongo_client = mongo_client
+    app.db = mongo_client.db['users_db']
+    app.collection = app.db['users']
 
-@pytest.fixture
-def client(app):
-    """A test client for the app."""
-    return app.test_client()
+    yield client

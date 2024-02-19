@@ -18,32 +18,6 @@ jobs:
           name: Install Python dependencies
           command: pip install -r requirements.txt
 
-      # # check docker veresion, make sure that docker is running
-      # - run:
-      #     name: Check Docker version
-      #     command: docker --version
-
-      # # Check if Docker is running
-      # - run:
-      #     name: Check Docker status
-      #     command: docker info || echo "Docker is not running"
-
-      # # Set up Docker Network
-      # - run:
-      #     name: Set up Docker Network
-      #     command: docker network create my-network
-
-      # # set up a mongodb container
-      # - run:
-      #     name: Set up MongoDB container
-      #     command: |
-      #       docker run -p 27017:27017 --name mongo-example --network my-network -d mongo
-
-      # - run:
-      #   name: run flask app container
-      #   command: |
-      #     docker run -p 3000:3000 --network my-network flask-rest-docker-app-hw1:1.0
-
       # run flask test
       - run:
           name: Run Pytest

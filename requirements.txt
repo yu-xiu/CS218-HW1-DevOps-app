@@ -3,3 +3,4 @@ Flask == 3.0.2
 pytest == 8.0.0
 requests
 pymongo
+mongomock
